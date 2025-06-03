@@ -16,17 +16,22 @@
       text-align: center;
     }
     img.logo {
-      max-width: 150px;
+      max-width: 140px;
       margin: 10px auto;
     }
     h1 {
       color: #ff9900;
-      font-size: 0.9rem;
+      font-size: 1rem;
       margin-bottom: 10px;
     }
+    .section-title {
+      font-size: 0.9rem;
+      margin: 12px 0 6px 0;
+      color: #ffffff;
+    }
     table {
-      width: 90%;
-      margin: 8px auto;
+      width: 92%;
+      margin: 5px auto;
       border-collapse: collapse;
       background-color: rgba(80,80,80,0.6);
       border-radius: 8px;
@@ -42,7 +47,7 @@
     }
     .notice {
       color: red;
-      margin: 10px 0;
+      margin: 8px 0;
       font-size: 0.75rem;
     }
     .visitor-counter {
@@ -57,6 +62,12 @@
     a {
       color: #00bfff;
     }
+    @media (max-width: 480px) {
+      h1 { font-size: 0.9rem; }
+      .section-title { font-size: 0.8rem; }
+      table { font-size: 0.65rem; }
+      .notice, .visitor-counter, .footer { font-size: 0.65rem; }
+    }
   </style>
 </head>
 <body>
@@ -64,7 +75,7 @@
   <img class="logo" src="background.jpg" alt="الشعار">
   <h1>الأهلية ونزول الضمان المطور</h1>
 
-  <h3>صدور الأهلية</h3>
+  <div class="section-title">صدور الأهلية</div>
   <table>
     <tr><th>التاريخ</th><th>اليوم</th><th>الأيام المتبقية</th><th>العد التنازلي</th></tr>
     <tr>
@@ -75,7 +86,7 @@
     </tr>
   </table>
 
-  <h3>نزول الضمان</h3>
+  <div class="section-title">نزول الضمان</div>
   <table>
     <tr><th>التاريخ</th><th>اليوم</th><th>الأيام المتبقية</th><th>العد التنازلي</th></tr>
     <tr>
@@ -125,7 +136,8 @@
     const minutes = Math.floor((diff / (1000 * 60)) % 60);
     const seconds = Math.floor((diff / 1000) % 60);
 
-    document.getElementById(prefix + "-date").textContent = targetDate.toLocaleDateString("ar-EG");
+    const dateStr = targetDate.getFullYear() + "-" + (targetDate.getMonth()+1).toString().padStart(2, '0') + "-" + targetDate.getDate().toString().padStart(2, '0');
+    document.getElementById(prefix + "-date").textContent = dateStr;
     document.getElementById(prefix + "-day").textContent = weekdays[targetDate.getDay()];
     document.getElementById(prefix + "-remaining").textContent = `${days} يوم`;
     document.getElementById(prefix + "-countdown").textContent = `${days}ي ${hours}س ${minutes}د ${seconds}ث`;
